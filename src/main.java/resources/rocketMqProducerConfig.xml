@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--<bean id="defaultMQProducer" class="org.apache.rocketmq.client.producer.DefaultMQProducer" init-method="start" destroy-method="shutdown">-->
+    <!--<property name="producerGroup" value="producer"/>-->
+    <!--<property name="namesrvAddr" value="127.0.0.1:9876"/>-->
+    <!--</bean>-->
+    <!--<bean id="transactionMQProducer" class="org.apache.rocketmq.client.producer.TransactionMQProducer" init-method="start" destroy-method="shutdown">-->
+    <!--<property name="producerGroup" value="producer1"/>-->
+    <!--<property name="namesrvAddr" value="127.0.0.1:9876"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 顺序执行(可分区): 单线程，一个执行完毕继续执行下一个-->
+    <!--分区顺序消息中区分不同分区的关键字段，sharding key于普通消息的key是完全不同的概念。-->
+    <!--全局顺序消息，该字段可以设置为任意非空字符串。-->
+    <!--&ndash;&gt;-->
+    <!--<bean id="scProducer" class="org.apache.rocketmq.client.producer" init-method="start"-->
+    <!--destroy-method="shutdown">-->
+    <!--<property name="properties"> &lt;!&ndash;生产者配置信息&ndash;&gt;-->
+    <!--<props>-->
+    <!--<prop key="ProducerId">${ProducerId_SC}</prop> &lt;!&ndash;请替换为自己的账户信息&ndash;&gt;-->
+    <!--<prop key="AccessKey">${AccessKey}</prop>-->
+    <!--<prop key="SecretKey">${SecretKey}</prop>-->
+    <!--</props>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+
+    <bean id="producer" class="com.cnsuning.redis.util.mq.producer.SpringRocketProConfig" init-method="init"
+          destroy-method="destroy">
+        <constructor-arg name="nameServerAddr" value="localhost:9876"/>
+        <constructor-arg name="producerGroupName" value="spring_producer_group"/>
+    </bean>
+
+
+</beans>
